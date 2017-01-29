@@ -16,7 +16,8 @@ class ReactPlayground extends Component {
     lineNumbers: false,
     lineWrapping: true,
     smartIndent: false,
-    tabSize: 4
+    tabSize: 4,
+    onChange: () => {}
   };
 
   static propTypes = {
@@ -35,7 +36,8 @@ class ReactPlayground extends Component {
     lineNumbers: PropTypes.bool,
     lineWrapping: PropTypes.bool,
     smartIndent: PropTypes.bool,
-    tabSize: PropTypes.number
+    tabSize: PropTypes.number,
+    onChange: PropTypes.func
   };
 
   state = {
@@ -52,10 +54,12 @@ class ReactPlayground extends Component {
   };
 
   _handleCodeChange = (code) => {
+    const { onChange } = this.props;
+
     this.setState({
       code,
       external: false
-    });
+    }, () => onChange(code));
   };
 
   _toggleCode = () => {
