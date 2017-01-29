@@ -1,6 +1,9 @@
 /* eslint new-cap:0 no-unused-vars:0 */
 import React, { Component, PropTypes } from "react";
 import Codemirror from "react-codemirror";
+import "codemirror/addon/edit/closebrackets";
+import "codemirror/addon/edit/closetag";
+import "codemirror/addon/edit/matchbrackets";
 
 if (typeof window !== "undefined") {
   require("codemirror/mode/jsx/jsx");
@@ -58,6 +61,8 @@ class Editor extends Component {
     const options = {
       mode: "jsx",
       matchBrackets: true,
+      autoCloseBrackets: true,
+      autoCloseTags: true,
       lineWrapping,
       smartIndent,
       lineNumbers,
